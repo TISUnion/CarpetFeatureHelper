@@ -114,7 +114,7 @@ def onServerInfo(server, info):
 		content = content.replace('<--[HERE]', '')
 
 	command = content.split()
-	if command[0] != Prefix:
+	if len(command) == 0 or command[0] != Prefix:
 		return
 	del command[0]
 
@@ -140,3 +140,7 @@ def on_info(server, info):
 	info2 = copy.deepcopy(info)
 	info2.isPlayer = info2.is_player
 	onServerInfo(server, info2)
+
+
+def on_load(server, old):
+	server.add_help_message(Prefix, '开关地毯mod特性/功能')
